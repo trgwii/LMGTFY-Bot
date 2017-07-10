@@ -1,0 +1,28 @@
+{
+  "name": "gtfy_bot",
+  "version": "1.0.0",
+  "description": "A LMGTFY inline Telegram Bot",
+  "main": "index.js",
+  "dependencies": {
+    "telegraf": "^3.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trgwii/gtfy_bot.git"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "lmgtfy"
+  ],
+  "author": "Thomas Rory Gummerson <thomas@gummerson.no> (https://trgwii.no)",
+  "license": "Beerware",
+  "bugs": {
+    "url": "https://github.com/trgwii/gtfy_bot/issues"
+  },
+  "homepage": "https://github.com/trgwii/gtfy_bot#readme"
+}

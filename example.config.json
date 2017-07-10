@@ -1,0 +1,8 @@
+{
+	"token": "BOT TOKEN HERE",
+	"baseURL": "https://lmgtfy.com/?q=",
+	"cacheTime": 0,
+
+	"emptyMessage": "How to type inline query Telegram",
+	"messageTitle": "LMGTFY"
+}
