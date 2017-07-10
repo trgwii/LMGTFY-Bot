@@ -39,3 +39,4 @@ bot.on('inline_query', ctx => {
 });
 
 bot.startPolling();
+
