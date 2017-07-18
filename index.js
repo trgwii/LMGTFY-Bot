@@ -1,21 +1,17 @@
 'use strict';
 
-const { createHash } = require('crypto');
-
 const Telegraf = require('telegraf');
+
+const { hash, uri, useTemplate } = require('./utils');
 
 const config = require('./config');
 
-const hash = str => {
-	const hash = createHash('sha256');
-	hash.update(str);
-	return hash.digest('hex');
-};
-
 const bot = new Telegraf(config.token);
 
-const uri = str =>
-	encodeURIComponent(str).replace(/%20/g, '+');
+for (command in config.commands) {
+	bot.command(command, ctx =>
+		ctx.reply(useTemplate(config.commands[command])));
+}
 
 bot.on('inline_query', ctx => {
 
