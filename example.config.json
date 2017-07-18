@@ -6,7 +6,7 @@
 
 	"commands": {
 		"start": "Hello, use this bot in inline mode! (type '@{botname} <message>' and it will give you results!)",
-		"help": "Hello, this bot is meant to be used in inline mode, talk to {admin} or visit {repository} for more info."
+		"help": "Hello, this bot is meant to be used in inline mode, talk to @{admin} or visit {repository} for more info."
 	},
 
 	"data": {
