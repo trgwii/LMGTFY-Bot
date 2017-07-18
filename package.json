@@ -4,7 +4,7 @@
   "description": "A LMGTFY inline Telegram Bot",
   "main": "index.js",
   "dependencies": {
-    "telegraf": "^3.8.0"
+    "telegraf": "^3.8.2"
   },
   "devDependencies": {},
   "scripts": {
