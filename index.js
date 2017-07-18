@@ -8,7 +8,7 @@ const config = require('./config');
 
 const bot = new Telegraf(config.token);
 
-for (command in config.commands) {
+for (const command in config.commands) {
 	bot.command(command, ctx =>
 		ctx.reply(useTemplate(config.commands[command])));
 }
