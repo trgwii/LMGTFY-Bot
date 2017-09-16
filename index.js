@@ -26,7 +26,8 @@ bot.on('inline_query', ctx => {
 		id: hash(source.name + ':' + query),
 		title: source.name,
 		input_message_content: {
-			message_text: makeURL(source, query)
+			message_text: makeURL(source, query),
+			disable_web_page_preview: !config.preview
 		},
 		description: query
 	})), {

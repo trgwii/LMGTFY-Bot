@@ -1,6 +1,7 @@
 {
 	"token": "BOT TOKEN HERE",
 	"cacheTime": 0,
+	"preview": false,
 	"hashAlgorithm": "sha256",
 
 	"commands": {
