@@ -13,23 +13,23 @@ for (const command in config.commands) {
 		ctx.reply(useTemplate(config.commands[command])));
 }
 
+const makeURL = (source, query) => query.length > 0
+	? source.baseURL + uri(query)
+	: source.baseURL + uri(config.emptyMessage);
+
 bot.on('inline_query', ctx => {
 
 	const query = ctx.inlineQuery.query.trim();
 
-	const url = query.length > 0
-		? config.baseURL + uri(query)
-		: config.baseURL + uri(config.emptyMessage);
-
-	ctx.answerInlineQuery([ {
+	ctx.answerInlineQuery(config.sources.map(source => ({
 		type: 'article',
-		id: hash(query),
-		title: config.messageTitle,
+		id: hash(source.name + ':' + query),
+		title: source.name,
 		input_message_content: {
-			message_text: url
+			message_text: makeURL(source, query)
 		},
 		description: query
-	} ], {
+	})), {
 		cache_time: config.cacheTime
 	});
 });

@@ -1,6 +1,5 @@
 {
 	"token": "BOT TOKEN HERE",
-	"baseURL": "https://lmgtfy.com/?q=",
 	"cacheTime": 0,
 	"hashAlgorithm": "sha256",
 
@@ -14,7 +13,15 @@
 		"admin": "TRGWII",
 		"botname": "gtfy_bot"
 	},
-
-	"emptyMessage": "How to type inline query Telegram",
-	"messageTitle": "LMGTFY"
+	"sources": [
+		{
+			"name": "LMGTFY",
+			"baseURL": "https://lmgtfy.com/?q="
+		},
+		{
+			"name": "Google",
+			"baseURL": "https://www.google.com/search?q="
+		}
+	],
+	"emptyMessage": "How to type inline query Telegram"
 }
