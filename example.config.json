@@ -20,6 +20,11 @@
 			"baseURL": "https://lmgtfy.com/?q="
 		},
 		{
+			"name": "Shortened (devs.rest)",
+			"baseURL": "https://lmgtfy.com/?q=",
+			"articleTransformer": "devs.rest"
+		},
+		{
 			"name": "Google",
 			"baseURL": "https://www.google.com/search?q="
 		}

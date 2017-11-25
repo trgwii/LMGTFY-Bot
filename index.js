@@ -13,27 +13,42 @@ for (const command in config.commands) {
 		ctx.reply(useTemplate(config.commands[command])));
 }
 
-const makeURL = (source, query) => query.length > 0
-	? source.baseURL + uri(query)
-	: source.baseURL + uri(config.emptyMessage);
+const articleTransformers = config.sources
+	.filter(sources => sources.articleTransformer)
+	.reduce((result, source) =>
+		Object.assign({}, result, {
+			[source.name]: require('./' + source.articleTransformer)
+		}), {});
+
+const makeURL = (base, query) => query.length > 0
+	? base + uri(query)
+	: base + uri(config.emptyMessage);
+
+const createArticle = (name, base, query) => ({
+	type: 'article',
+	id: hash(name + ':' + query),
+	title: name,
+	input_message_content: {
+		message_text: makeURL(base, query),
+		disable_web_page_preview: !config.preview
+	},
+	description: query
+});
 
 bot.on('inline_query', ctx => {
 
 	const query = ctx.inlineQuery.query.trim();
 
-	ctx.answerInlineQuery(config.sources.map(source => ({
-		type: 'article',
-		id: hash(source.name + ':' + query),
-		title: source.name,
-		input_message_content: {
-			message_text: makeURL(source, query),
-			disable_web_page_preview: !config.preview
-		},
-		description: query
-	})), {
-		cache_time: config.cacheTime
-	});
+	return Promise.all(config.sources
+		.map(source =>
+			createArticle(source.name, source.baseURL, query))
+		.map(article => articleTransformers[article.title]
+			? articleTransformers[article.title](article)
+			: article))
+		.then(articles =>
+			ctx.answerInlineQuery(articles, {
+				cache_time: config.cacheTime
+			}));
 });
 
 bot.startPolling();
-
