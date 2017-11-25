@@ -20,9 +20,9 @@
 			"baseURL": "https://lmgtfy.com/?q="
 		},
 		{
-			"name": "Shortened (devs.rest)",
+			"name": "Shortened (devs.sh)",
 			"baseURL": "https://lmgtfy.com/?q=",
-			"articleTransformer": "devs.rest"
+			"articleTransformer": "devs.sh"
 		},
 		{
 			"name": "Google",
