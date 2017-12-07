@@ -1,5 +1,5 @@
 {
-  "name": "gtfy_bot",
+  "name": "lmgtfybot",
   "version": "1.0.0",
   "description": "A LMGTFY inline Telegram Bot",
   "main": "index.js",

@@ -12,7 +12,7 @@
 	"data": {
 		"repository": "https://github.com/trgwii/gtfy_bot",
 		"admin": "TRGWII",
-		"botname": "gtfy_bot"
+		"botname": "lmgtfybot"
 	},
 	"sources": [
 		{
@@ -20,7 +20,7 @@
 			"baseURL": "https://lmgtfy.com/?q="
 		},
 		{
-			"name": "Shortened (devs.sh)",
+			"name": "Shortened link (devs.sh)",
 			"baseURL": "https://lmgtfy.com/?q=",
 			"articleTransformer": "devs.sh"
 		},
