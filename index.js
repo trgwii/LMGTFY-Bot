@@ -51,4 +51,6 @@ bot.on('inline_query', ctx => {
 			}));
 });
 
+bot.catch(console.error);
+
 bot.startPolling();
