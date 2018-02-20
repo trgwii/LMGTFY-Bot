@@ -1,5 +1,8 @@
 {
 	"token": "BOT TOKEN HERE",
+	"kutt.it": {
+		"apikey": "kutt.it API KEY HERE"
+	},
 	"cacheTime": 0,
 	"preview": false,
 	"hashAlgorithm": "sha256",
@@ -22,7 +25,12 @@
 		{
 			"name": "Shortened link (devs.sh)",
 			"baseURL": "https://lmgtfy.com/?q=",
-			"articleTransformer": "devs.sh"
+			"urlTransformer": "devs.sh"
+		},
+		{
+			"name": "Shortened link (kutt.it)",
+			"baseURL": "https://lmgtfy.com/?q=",
+			"urlTransformer": "kutt.it"
 		},
 		{
 			"name": "Google",

@@ -1,5 +1,7 @@
 'use strict';
 
+const R = require('ramda');
+
 const Telegraf = require('telegraf');
 
 const { hash, uri, useTemplate } = require('./utils');
@@ -8,47 +10,59 @@ const config = require('./config');
 
 const bot = new Telegraf(config.token);
 
-for (const command in config.commands) {
-	bot.command(command, ctx =>
-		ctx.reply(useTemplate(config.commands[command])));
-}
+R.mapObjIndexed(
+	(text, name) =>
+		bot.command(name, ctx =>
+			ctx.reply(useTemplate(text))),
+	config.commands);
 
-const articleTransformers = config.sources
-	.filter(sources => sources.articleTransformer)
-	.reduce((result, source) =>
-		Object.assign({}, result, {
-			[source.name]: require('./' + source.articleTransformer)
-		}), {});
+const requireSubFiles = prop => R.compose(
+	R.fromPairs,
+	R.map(R.converge(
+		R.pair, [
+			R.prop('name'),
+			R.compose(
+				require,
+				R.concat('./'),
+				R.prop(prop))
+		])),
+	R.filter(R.has(prop)));
+
+const urlTransformers =
+	requireSubFiles('urlTransformer')(config.sources);
 
 const makeURL = (base, query) => query.length > 0
 	? base + uri(query)
 	: base + uri(config.emptyMessage);
 
-const createArticle = (name, base, query) => ({
-	type: 'article',
+const createArticle = async (name, base, query, transformer) => ({
+	description: query,
 	id: hash(name + ':' + query),
-	title: name,
 	input_message_content: {
-		message_text: makeURL(base, query),
-		disable_web_page_preview: !config.preview
+		disable_web_page_preview: !config.preview,
+		message_text: transformer
+			? await transformer(makeURL(base, query))
+			: makeURL(base, query)
 	},
-	description: query
+	title: name,
+	type: 'article'
 });
 
-bot.on('inline_query', ctx => {
+bot.on('inline_query', async ctx => {
 
 	const query = ctx.inlineQuery.query.trim();
 
-	return Promise.all(config.sources
+	const articles = await Promise.all(config.sources
 		.map(source =>
-			createArticle(source.name, source.baseURL, query))
-		.map(article => articleTransformers[article.title]
-			? articleTransformers[article.title](article)
-			: article))
-		.then(articles =>
-			ctx.answerInlineQuery(articles, {
-				cache_time: config.cacheTime
-			}));
+			createArticle(
+				source.name,
+				source.baseURL,
+				query,
+				urlTransformers[source.name])));
+
+	return ctx.answerInlineQuery(articles, {
+		cache_time: config.cacheTime
+	});
 });
 
 bot.catch(console.error);

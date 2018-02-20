@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.17.1",
+    "ramda": "^0.25.0",
     "telegraf": "^3.8.2"
   },
   "devDependencies": {},
@@ -20,6 +21,9 @@
     "bot",
     "lmgtfy"
   ],
+  "engines": {
+    "node": "^9.4.0"
+  },
   "author": "Thomas Rory Gummerson <thomas@gummerson.no> (https://trgwii.no)",
   "license": "Beerware",
   "bugs": {

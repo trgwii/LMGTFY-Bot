@@ -1,24 +1,26 @@
 'use strict';
 
+const R = require('ramda');
+
 const config = require('./config');
 
 const { createHash } = require('crypto');
 
 const hash = str => {
-	const hash = createHash(config.hashAlgorithm);
-	hash.update(str);
-	return hash.digest('hex');
+	const h = createHash(config.hashAlgorithm);
+	h.update(str);
+	return h.digest('hex');
 };
 
-const uri = str =>
-	encodeURIComponent(str).replace(/%20/g, '+');
+const uri = R.compose(
+	R.replace(/%20/g, '+'),
+	encodeURIComponent);
 
 const useTemplate = str =>
-	str.replace(/{(\w+)}/g, (_, name) => config.data[name]);
+	str.replace(/\{(\w+)\}/g, (_, name) => config.data[name]);
 
 module.exports = {
 	hash,
 	uri,
 	useTemplate
 };
-
