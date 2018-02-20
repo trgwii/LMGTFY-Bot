@@ -4,9 +4,9 @@
   "description": "A LMGTFY inline Telegram Bot",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "ramda": "^0.25.0",
-    "telegraf": "^3.8.2"
+    "telegraf": "^3.18.0"
   },
   "devDependencies": {},
   "scripts": {
