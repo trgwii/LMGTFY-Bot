@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('../config');
+const config = require('../loadconfig');
 
 const axios = require('axios');
 

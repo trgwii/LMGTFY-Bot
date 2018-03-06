@@ -2,40 +2,5 @@
 	"token": "BOT TOKEN HERE",
 	"kutt.it": {
 		"apikey": "kutt.it API KEY HERE"
-	},
-	"cacheTime": 0,
-	"preview": false,
-	"hashAlgorithm": "sha256",
-
-	"commands": {
-		"start": "Hello, use this bot in inline mode! (type '@{botname} <message>' and it will give you results!)",
-		"help": "Hello, this bot is meant to be used in inline mode, talk to @{admin} or visit {repository} for more info."
-	},
-
-	"data": {
-		"repository": "https://github.com/trgwii/LMGTFY-Bot",
-		"admin": "TRGWII",
-		"botname": "lmgtfybot"
-	},
-	"sources": [
-		{
-			"name": "LMGTFY",
-			"baseURL": "https://lmgtfy.com/?q="
-		},
-		{
-			"name": "Shortened link (devs.sh)",
-			"baseURL": "https://lmgtfy.com/?q=",
-			"urlTransformer": "devs.sh"
-		},
-		{
-			"name": "Shortened link (kutt.it)",
-			"baseURL": "https://lmgtfy.com/?q=",
-			"urlTransformer": "kutt.it"
-		},
-		{
-			"name": "Google",
-			"baseURL": "https://www.google.com/search?q="
-		}
-	],
-	"emptyMessage": "How to type inline query Telegram"
+	}
 }

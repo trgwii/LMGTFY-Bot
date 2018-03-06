@@ -6,7 +6,7 @@ const Telegraf = require('telegraf');
 
 const { hash, uri, useTemplate } = require('./utils');
 
-const config = require('./config');
+const config = require('./loadconfig');
 
 const bot = new Telegraf(config.token);
 

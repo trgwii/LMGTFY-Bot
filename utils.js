@@ -2,7 +2,7 @@
 
 const R = require('ramda');
 
-const config = require('./config');
+const config = require('./loadconfig');
 
 const { createHash } = require('crypto');
 
